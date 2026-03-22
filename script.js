@@ -1,27 +1,22 @@
-// Получаем ссылку на экран калькулятора
-const display = document.getElementById('display');
+// 1. Создаем список слов (массив)
+const words = [
+    "Яблоко", "Велосипед", "Космос", "Программист", 
+    "Арбуз", "Компьютер", "Счастье", "Музыка", 
+    "Гитара", "Море", "Закат", "Кофе", 
+    "Книга", "Дружба", "Путешествие", "Кот","дед мороз"
+];
 
-// Функция добавления символа на экран
-function appendToDisplay(input) {
-    display.value += input;
-}
+// 2. Функция, которая выбирает слово
+function getRandomWord() {
+    // Находим случайный индекс от 0 до длины списка слов
+    const randomIndex = Math.floor(Math.random() * words.length);
+    
+    // Берем слово по этому индексу
+    const randomWord = words[randomIndex];
 
-// Функция очистки экрана (кнопка C)
-function clearDisplay() {
-    display.value = "";
-}
+    // Находим элемент на странице, куда нужно вставить слово
+    const displayElement = document.getElementById('word-display');
 
-// Функция удаления последнего символа (кнопка стрелочки)
-function deleteLast() {
-    display.value = display.value.slice(0, -1);
-}
-
-// Функция вычисления результата (кнопка =)
-function calculate() {
-    try {
-        // eval() выполняет математическое выражение, записанное в строке
-        display.value = eval(display.value);
-    } catch (error) {
-        display.value = "?";
-    }
+    // Записываем слово
+    displayElement.innerText = randomWord;
 }
